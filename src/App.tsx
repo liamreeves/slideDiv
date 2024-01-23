@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import InspireMe from './Components/InspireMe';
+import Header from './Components/Header';
+import SlideScreen from './Components/SlideScreen';
 
 function App() {
+    const [tabOpen, handleTab] =  useState(false)
+
+    useEffect(() => {
+    }, [tabOpen])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header isOpen={tabOpen} handleOpen={() => handleTab(!tabOpen)}/>
+        <InspireMe/>
+        <div>
+
+        <SlideScreen isOpen={tabOpen} amount={100} time={5}/>
+        </div>
     </div>
   );
 }
