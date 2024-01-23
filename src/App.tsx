@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import InspireMe from './Components/InspireMe';
 import Header from './Components/Header';
 import SlideScreen from './Components/SlideScreen';
 
@@ -12,7 +11,6 @@ function App() {
   return (
     <div className="App">
       <Header isOpen={tabOpen} handleOpen={() => handleTab(!tabOpen)}/>
-        <InspireMe/>
         <div>
 
         <SlideScreen isOpen={tabOpen} amount={100} time={5}/>
