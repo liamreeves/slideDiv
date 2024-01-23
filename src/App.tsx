@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <Header isOpen={tabOpen} handleOpen={() => handleTab(!tabOpen)}/>
         <div>
-
-        <SlideScreen isOpen={tabOpen} amount={100} time={5}/>
+          <SlideScreen isOpen={tabOpen} amount={256} time={20} gradientIncrement={1}/>
         </div>
     </div>
   );

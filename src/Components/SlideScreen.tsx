@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 interface SlideProps {
     // show/hide divs
@@ -7,7 +7,11 @@ interface SlideProps {
     amount: number
     // milliseconds between each div's transition
     time: number
+    // RGB increment for adjusting the gradient
+    gradientIncrement: number
 }
+
+
 
 let rows: number[] = []
 let divs: any[] = []
@@ -15,12 +19,18 @@ let divs: any[] = []
 
 const SlideScreen: React.FC<SlideProps> = (props: SlideProps) => {
 
+    const [divAmount, updateDivAmount] = useState(0)
+
+
     useEffect(() => {
+        // limit number of divs to 1000 for performance
+        props.amount > 1000 ? updateDivAmount(1000) : updateDivAmount(props.amount)
+
         // clear array
         rows = []
         
         // fill empty array with numbers according to amount passed in props
-        for (let i = 0; i < props.amount; i++) {
+        for (let i = 0; i < divAmount; i++) {
             rows.push(i)
         }
 
@@ -34,8 +44,8 @@ const SlideScreen: React.FC<SlideProps> = (props: SlideProps) => {
         for (let i = 0; i < rows.length; i++) {
             let slideDiv: any = document.querySelector(`#slide-div-${i}`)
             if (slideDiv) {
-                slideDiv.style.backgroundColor = `rgb(12,${i * 2},212)` 
-                slideDiv.style.transitionDuration = `${(i + props.time) * 5}ms`
+                slideDiv.style.backgroundColor = `rgb(120,${i * props.gradientIncrement},212)` 
+                slideDiv.style.transitionDuration = `${(i + 1) * props.time}ms`
             }
         }
     }, [props])
